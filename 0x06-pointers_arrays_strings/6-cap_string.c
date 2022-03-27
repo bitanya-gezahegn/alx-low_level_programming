@@ -1,34 +1,33 @@
 #include "main.h"
 
 /**
- * cap_string - capitalizes everey word of a string
- * @s: string to modify
- *
- * Return: the resulting string
+ * cap_string - capitalize first letter of each word
+ * @s: string to manipulate
+ * Return: string
  */
+
 char *cap_string(char *s)
 {
-	int i, j;
+	int i = 0;
 
-	char spe[13] = {' ', '\t', '\n', ',', ';', '.',
-		'!', '?', '"', '(', ')', '{', '}'};
+	/* check first index for capital */
+	if (s[i] >= 'a' && s[i] <= 'z')
+		s[i] = s[i] - 'a' + 'A';
+	i++;
 
-	for (i = 0; s[i] != '\0'; i++)
+	while (s[i] != '\0') /* iterate through string */
 	{
-		if (i == 0 && s[i] >= 'a' && s[i] <= 'z')
-			s[i] -= 32;
 
-		for (j = 0; j < 13; j++)
-		{
-			if (s[i] == spe[j])
-			{
-				if (s[i + 1] >= 'a' && s[i + 1] <= 'z')
-				{
-					s[i + 1] -= 32;
-				}
-			}
-		}
+		/* if lowercase and prior char is separator, capitalize*/
+		if ((s[i] >= 'a' && s[i] <= 'z')
+		    && (s[i - 1] == ',' || s[i - 1] == ';' || s[i - 1] == '.' ||
+			s[i - 1] == '!' || s[i - 1] == '?' || s[i - 1] == '"' ||
+			s[i - 1] == '(' || s[i - 1] == ')' || s[i - 1] == '{' ||
+			s[i - 1] == '}' || s[i - 1] == ' ' || s[i - 1] == '\t'
+			|| s[i - 1] == '\n'))
+			s[i] = s[i] - 'a' + 'A';
+		i++;
 	}
 
 	return (s);
-}	
+}
