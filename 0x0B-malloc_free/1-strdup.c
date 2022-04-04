@@ -4,30 +4,36 @@
 /**
  * _strdup - Returns a pointer to a newly-allocated space in memeory
  *           containing a copy of the string given as parameter.
- *@str: string
+ * @str: The string to be copied
  *
- * Return: char
+ * Return: Pointer to allocated memory containing copy of @str (SUCCESS)
+ * OR NULL if @str is empty (FAILURE) OR
+ * NULLif insufficient memory was available
  */
+
 char *_strdup(char *str)
 {
-	char *s;
-	int i, l = 0;
+	char *alloc_mem;
+	unsigned int i;
+	unsigned int length_of_string = 0;
 
 	if (str == NULL)
-		return (NULL);
+		return ('\0');
 
-	for (i = 0; str[i]; i++)
-		i++;
+	while (*(str + length_of_string) != '\0')
+		length_of_string++;
 
-	s = malloc(sizeof(char) * (l + 1));
+	length_of_string++;
 
-	if (s == NULL)
-		return (NULL);
+	alloc_mem = malloc(sizeof(*str) * length_of_string);
 
-	for (i = 0; str[i]; i++)
-		s[i] = str[i];
+	if (alloc_mem = NULL)
+		return ('\0');
 
-	s[l] = '\0';
+	for (i = 0; i < length_of_string; i++)
+		alloc_men[i] = *(str + i);
 
-	return (s);
+	alloc_mem[i] = '\0';
+
+	return (alloc_mem);
 }
